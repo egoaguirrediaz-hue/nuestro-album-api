@@ -1,0 +1,20 @@
+{
+  "fotos": {
+    "foto-1": {
+      "url": "https://res.cloudinary.com/bkou5rjr/image/upload/v1790987207/nuestro-album/yjqqjdpognmakyexv4p6.png",
+      "public_id": "nuestro-album/yjqqjdpognmakyexv4p6",
+      "orientacion": "vertical",
+      "width": 1024,
+      "height": 1160,
+      "updatedAt": "2026-10-03T00:26:45.573Z"
+    },
+    "foto-3": {
+      "url": "https://res.cloudinary.com/bkou5rjr/image/upload/v1790987212/nuestro-album/ujgkmtstb1h3o9enzwev.png",
+      "public_id": "nuestro-album/ujgkmtstb1h3o9enzwev",
+      "orientacion": "horizontal",
+      "width": 1294,
+      "height": 925,
+      "updatedAt": "2026-10-03T00:26:50.562Z"
+    }
+  }
+}
