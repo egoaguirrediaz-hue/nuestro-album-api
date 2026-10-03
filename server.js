@@ -212,15 +212,26 @@ app.post("/api/upload", checkAdminKey, upload.single("foto"), async (req, res) =
     }
 });
 
-// ----- Guardar un texto (leyenda de foto, título o dedicatoria) -----
+// ----- Guardar un texto (leyenda, fecha, título, dedicatoria o carta) -----
 app.put("/api/texto", checkAdminKey, (req, res) => {
     const { clave, texto } = req.body || {};
 
-    if (typeof clave !== "string" || !/^(foto-\d+|titulo|dedicatoria)$/.test(clave)) {
+    if (typeof clave !== "string" || !/^(foto-\d+|fecha-foto-\d+|titulo|dedicatoria|carta)$/.test(clave)) {
         return res.status(400).json({ success: false, message: "Clave de texto no válida." });
     }
-    if (typeof texto !== "string" || texto.length > 300) {
-        return res.status(400).json({ success: false, message: "El texto debe tener máximo 300 caracteres." });
+    if (typeof texto !== "string") {
+        return res.status(400).json({ success: false, message: "Texto no válido." });
+    }
+
+    if (clave.startsWith("fecha-")) {
+        if (!/^(\d{4}-\d{2}-\d{2})?$/.test(texto)) {
+            return res.status(400).json({ success: false, message: "Fecha no válida." });
+        }
+    } else {
+        const max = clave === "carta" ? 1500 : 300;
+        if (texto.length > max) {
+            return res.status(400).json({ success: false, message: `El texto debe tener máximo ${max} caracteres.` });
+        }
     }
 
     const album = readAlbum();
